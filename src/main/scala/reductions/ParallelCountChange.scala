@@ -1,7 +1,6 @@
 package reductions
 
 import org.scalameter._
-import common._
 
 object ParallelCountChangeRunner {
 
@@ -46,7 +45,13 @@ object ParallelCountChange {
    *  coins for the specified amount of money.
    */
   def countChange(money: Int, coins: List[Int]): Int = {
-    ???
+    def cc(amount: Int, kindsOfCoins: Int): Int = {
+      if (amount == 0) 1
+      else if (amount < 1 || kindsOfCoins == 0) 0
+      else cc(amount, kindsOfCoins - 1) + cc(amount - coins(kindsOfCoins - 1), kindsOfCoins)
+    }
+
+    cc(money, coins.size)
   }
 
   type Threshold = (Int, List[Int]) => Boolean
