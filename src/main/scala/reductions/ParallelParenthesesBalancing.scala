@@ -41,7 +41,10 @@ object ParallelParenthesesBalancing {
   /** Returns `true` iff the parentheses in the input `chars` are balanced.
    */
   def balance(chars: Array[Char]): Boolean = {
-    ???
+    val sameCount: Boolean = chars.count(p => p == '(') == chars.count(p => p == ')')
+    val correctOrder = if (chars.indexOf('(') > -1) chars.indexOf('(') < chars.indexOf(')') else true
+    sameCount && correctOrder
+
   }
 
   /** Returns `true` iff the parentheses in the input `chars` are balanced.
